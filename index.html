@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>สบายทัวร์ | เที่ยวต่างประเทศแบบพอดี</title>
+  <!-- ฟอนต์ไทยจาก Google Fonts (ถ้าไม่มีเน็ตจะใช้ฟอนต์สำรองแทน) -->
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@500&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== แถบเมนูด้านบน ===== -->
+  <header class="header">
+    <a class="logo" href="#top">สบายทัวร์</a>
+    <nav>
+      <a href="#tours">แพ็กเกจทัวร์</a>
+      <a href="#booking">จองทัวร์</a>
+      <a href="#history">การจองของฉัน</a>
+      <span class="auth" id="authArea"></span>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== ส่วนหัวของหน้า (Hero) ===== -->
+    <section class="hero">
+      <h1>เที่ยวต่างประเทศ<br>แบบพอดี ไม่เหนื่อยเกินไป</h1>
+      <p>ทุกแพ็กเกจเดินวันละ 6,000–10,000 ก้าว มีเวลาพักทุกวัน เหมาะกับคนที่อยากเห็นของจริงโดยไม่ต้องรีบ</p>
+      <a class="btn" href="#tours">ดูแพ็กเกจทัวร์</a>
+    </section>
+
+    <!-- ===== รายการทัวร์ (JavaScript จะสร้างการ์ดให้) ===== -->
+    <section id="tours" class="section">
+      <h2>เลือกประเทศที่อยากไป</h2>
+      <div class="filters" id="filters"></div>
+      <div class="tour-grid" id="tourGrid"></div>
+    </section>
+
+    <!-- ===== ฟอร์มจองทัวร์ ===== -->
+    <section id="booking" class="section">
+      <h2>จองทัวร์</h2>
+      <form class="booking-form" id="bookingForm">
+        <label>ชื่อผู้จอง
+          <input type="text" id="nameInput" placeholder="เช่น สมชาย ใจดี" required>
+        </label>
+        <label>เลือกทัวร์
+          <select id="tourSelect"></select>
+        </label>
+        <label>จำนวนผู้เดินทาง (คน)
+          <input type="number" id="peopleInput" value="2" min="1" max="10" required>
+        </label>
+        <p class="total">ราคารวม: <span id="totalPrice">-</span></p>
+        <button class="btn" type="submit">ยืนยันการจอง</button>
+        <p class="message" id="message" role="status"></p>
+      </form>
+    </section>
+
+    <!-- ===== ประวัติการจอง (JavaScript จะสร้างรายการให้) ===== -->
+    <section id="history" class="section">
+      <h2>การจองของฉัน</h2>
+      <div class="history" id="historyList"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">เว็บตัวอย่างสำหรับฝึกเขียน HTML / CSS / JavaScript</footer>
+
+  <!-- หน้าต่างรายละเอียดทัวร์ (เปิดตอนกด "ดูรายละเอียด") -->
+  <dialog id="tourDialog">
+    <div class="dialog-inner" id="dialogContent"></div>
+  </dialog>
+
+  <!-- หน้าต่างเข้าสู่ระบบ / สมัครสมาชิก (ใช้หน้าต่างเดียว สลับโหมดด้วย JavaScript) -->
+  <dialog id="authDialog">
+    <div class="dialog-inner">
+      <h3 id="authTitle"></h3>
+      <form class="booking-form" id="authForm">
+        <label id="nameField">ชื่อ-นามสกุล
+          <input type="text" id="regName" autocomplete="name">
+        </label>
+        <label>อีเมล
+          <input type="email" id="emailInput" autocomplete="email" required>
+        </label>
+        <label>รหัสผ่าน (อย่างน้อย 6 ตัว)
+          <input type="password" id="passInput" minlength="6" required>
+        </label>
+        <p class="error" id="authError" role="alert"></p>
+        <button class="btn" type="submit" id="authSubmit"></button>
+        <button class="link-btn dark" type="button" id="authSwitch" data-auth="switch"></button>
+        <button class="link-btn dark" type="button" data-close>ปิด</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- หน้าต่างตั๋วทัวร์ (เปิดตอนจองสำเร็จ หรือกด "ดูตั๋ว" ในประวัติการจอง) -->
+  <dialog id="ticketDialog">
+    <div class="dialog-inner" id="ticketContent"></div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
